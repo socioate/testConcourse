@@ -1,0 +1,74 @@
+---
+resources:
+  - name: getAndroidFromGithub
+    type: git
+    source:
+      uri: git@github.allstate.com:Belfast-Labs/astronautAndroid.git
+      branch: master
+      private_key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        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
+        -----END RSA PRIVATE KEY-----
+
+jobs:
+  - name: insertCodeIntoDockerContainer
+    plan:
+    - aggregate:
+      - get: getAndroidFromGithub
+        trigger: true
+    - task: pullDockerImage
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: runmymind/docker-android-sdk}
+        run:
+          path: ./04_basic_pipeline/getDockerImages.sh
