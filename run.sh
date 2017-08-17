@@ -2,6 +2,8 @@
 
 printenv
 
+pwd
+ls ..
 cd ../getAndroidFromGithub
 pwd
 ls -a
