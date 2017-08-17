@@ -63,25 +63,32 @@ resources:
         sY6vFPTaTUa0NH4cDThmLzwMKlguVU6RfrDfv6uV6yGxjMAYceaTEvq5a9Tj
         -----END RSA PRIVATE KEY-----
 
+  - name: ubuntuDocker
+    type: docker-image
+    source: 
+      repository: akrty/gitab-ci-android-25
+
 jobs:
   - name: insertCodeIntoDockerContainer
     plan:
     - aggregate:
       - get: getResourcesFromGithub
         trigger: true
+      - get: ubuntuDocker
+        trigger: true
       - get: getAndroidFromGithub
         trigger: true
     - task: pullDockerImage
       privileged: true
+      image: ubuntuDocker
       config:
         platform: linux
-        image_resource:
-          type: docker-image
-          source: {repository: ubuntu}
+        inputs:
+        - name: getAndroidFromGithub        
         inputs:
         - name: getResourcesFromGithub
         run:
           dir: getResourcesFromGithub
-          path: cat 
+          path: sh 
           args: ["./run.sh"]
 
