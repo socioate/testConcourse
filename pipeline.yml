@@ -1,5 +1,10 @@
 ---
 resources:
+  - name: getResourcesFromGithub
+    type: git
+    source:
+      uri: https://github.com/socioate/testConcourse.git
+
   - name: getAndroidFromGithub
     type: git
     source:
@@ -62,13 +67,21 @@ jobs:
   - name: insertCodeIntoDockerContainer
     plan:
     - aggregate:
+      - get: getResourcesFromGithub
+        trigger: true
       - get: getAndroidFromGithub
         trigger: true
     - task: pullDockerImage
+      privileged: true
       config:
         platform: linux
         image_resource:
           type: docker-image
-          source: {repository: runmymind/docker-android-sdk}
+          source: {repository: ubuntu}
+        inputs:
+        - name: getResourcesFromGithub
         run:
-          path: ./04_basic_pipeline/getDockerImages.sh
+          dir: getResourcesFromGithub
+          path: cat 
+          args: ["./run.sh"]
+
