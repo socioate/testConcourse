@@ -6,7 +6,7 @@ pwd
 echo "list initial dir"
 ls
 echo "list 2 dirs up"
-ls ../..
+ls ../../..
 echo "move to android folder"
 cd ../getAndroidFromGithub
 pwd
